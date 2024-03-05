@@ -123,3 +123,36 @@ func topKFrequent(_ nums: [Int], _ k: Int) -> [Int] {
 let nums = [1, 1, 1, 2, 2, 3]
 let k = 2
 print(topKFrequent(nums, k))
+
+
+// MARK: Task 5
+
+func minMeetingRooms(_ intervals: [[Int]]) -> Int {
+    var startTimes = [Int]()
+    var endTimes = [Int]()
+    
+    for interval in intervals {
+        startTimes.append(interval[0])
+        endTimes.append(interval[1])
+    }
+    
+    startTimes.sort()
+    endTimes.sort()
+    
+    var minRooms = 0
+    var endIndex = 0
+    
+    for startTime in startTimes {
+        if startTime >= endTimes[endIndex] {
+            endIndex += 1
+        } else {
+            minRooms += 1
+        }
+    }
+    
+    return minRooms
+}
+
+let intervals = [[0, 30], [5, 10], [15, 20]]
+print(minMeetingRooms(intervals))
+
