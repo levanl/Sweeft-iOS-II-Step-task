@@ -97,6 +97,29 @@ func wordBreak(_ s: String, _ words: [String]) -> Bool {
     return dp[s.count]
 }
 
-//let s = "applepie"
-let words = ["apple", "pie"]
-print(wordBreak(s, words))
+let v = "applepenapple"
+let words = ["apple", "pen"]
+print(wordBreak(v, words))
+
+
+// MARK: Task 4
+
+func topKFrequent(_ nums: [Int], _ k: Int) -> [Int] {
+    
+    var frequencyMap = [Int: Int]()
+    
+    for num in nums {
+        frequencyMap[num, default: 0] += 1
+    }
+    
+    let sortedByFrequency = frequencyMap.sorted { $0.value > $1.value }
+    
+    let topKElements = sortedByFrequency.prefix(k).map { $0.key }
+    
+    return topKElements
+    
+}
+
+let nums = [1, 1, 1, 2, 2, 3]
+let k = 2
+print(topKFrequent(nums, k))
